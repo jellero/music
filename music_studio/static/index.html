@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Music Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><p class="eyebrow">CODEX CONTROL PLANE</p><h1>Music Studio</h1></div>
+    <div class="status"><span id="status-dot"></span><span id="status-text">Connessione…</span></div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar panel">
+      <div class="panel-heading"><h2>Progetti</h2><button id="new-project" class="icon-button" title="Nuovo progetto">＋</button></div>
+      <div id="project-list" class="project-list"></div>
+      <div class="codex-card"><strong>Controllo Codex</strong><p>Usa MCP o la CLI per modificare la stessa sessione mostrata qui.</p><code>music-studio-mcp</code></div>
+    </aside>
+
+    <section class="workspace">
+      <div class="panel transport-panel">
+        <div class="project-title"><span id="project-key" class="tag">—</span><div><h2 id="project-name">Nessun progetto</h2><p id="project-meta">Crea o seleziona un progetto.</p></div></div>
+        <div class="transport"><button id="compose" class="secondary" disabled>Componi</button><button id="render" class="primary" disabled>Render</button><button id="play" class="play" disabled>▶</button><audio id="audio" controls></audio></div>
+      </div>
+
+      <div class="grid-two">
+        <section class="panel score-panel">
+          <div class="panel-heading"><div><p class="eyebrow">SPARTITO</p><h3>Score overview</h3></div><select id="track-filter"><option value="all">Tutte le tracce</option></select></div>
+          <div id="score" class="score empty-state">Lo spartito apparirà qui.</div>
+        </section>
+        <section class="panel mixer-panel">
+          <div class="panel-heading"><div><p class="eyebrow">MIXER</p><h3>Tracce</h3></div></div>
+          <div id="mixer" class="mixer empty-state">Nessuna traccia.</div>
+        </section>
+      </div>
+
+      <section class="panel piano-panel">
+        <div class="panel-heading"><div><p class="eyebrow">SEQUENCER</p><h3>Piano roll</h3></div><span id="note-count" class="tag">0 note</span></div>
+        <div id="piano-roll" class="piano-roll empty-state">La sequenza apparirà qui.</div>
+      </section>
+
+      <section class="panel artifacts-panel">
+        <div class="panel-heading"><div><p class="eyebrow">OUTPUT</p><h3>Artefatti</h3></div></div>
+        <div id="artifacts" class="artifact-list empty-state">Esegui il rendering.</div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="project-dialog">
+    <form id="project-form" method="dialog">
+      <div class="dialog-heading"><h2>Nuovo progetto</h2><button value="cancel" class="icon-button">×</button></div>
+      <label>Nome<input name="name" value="Nuovo brano" required maxlength="120"></label>
+      <div class="form-grid">
+        <label>Tempo<input name="tempo" type="number" min="30" max="300" value="100"></label>
+        <label>Battute<input name="bars" type="number" min="1" max="256" value="8"></label>
+        <label>Tonalità<input name="key" value="C minor"></label>
+        <label>Metro<input name="time_signature" value="4/4"></label>
+      </div>
+      <button class="primary" value="default">Crea progetto</button>
+    </form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>
