@@ -1,0 +1,11 @@
+services:
+  studio:
+    build:
+      context: .
+    environment:
+      MUSIC_STUDIO_DATA: /app/data
+    ports:
+      - "${MUSIC_STUDIO_PORT:-8000}:8000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
