@@ -1,0 +1,14 @@
+# Variante locale: richiede `pip install -e .`
+[mcp_servers.music-studio]
+command = "music-studio-mcp"
+enabled = true
+
+[mcp_servers.music-studio.env]
+MUSIC_STUDIO_DATA = "/PERCORSO/ASSOLUTO/music/data"
+
+# Variante Docker: usa questa al posto della precedente.
+# [mcp_servers.music-studio]
+# command = "docker"
+# args = ["compose", "run", "--rm", "-T", "studio", "music-studio-mcp"]
+# cwd = "/PERCORSO/ASSOLUTO/music"
+# enabled = true
