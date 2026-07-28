@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-music-studio"
+version = "0.1.0"
+description = "A Codex-controlled music composition, notation, synthesis, and export environment."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "jellero"}]
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+  "pydantic>=2.9,<3",
+  "numpy>=2.0,<3",
+  "mcp[cli]>=1.27,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.27,<1",
+  "pytest>=8,<10",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+music-studio = "music_studio.cli:main"
+music-studio-mcp = "music_studio.mcp_server:main"
+
+[tool.setuptools.packages.find]
+include = ["music_studio*"]
+
+[tool.setuptools.package-data]
+music_studio = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
